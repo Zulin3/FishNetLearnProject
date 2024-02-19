@@ -3,3 +3,6 @@ Library
 Logs
 UserSettings
 .plastic
+Build
+obj
+.vs
