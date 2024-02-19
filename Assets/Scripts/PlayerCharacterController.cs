@@ -15,6 +15,7 @@ public class PlayerCharacterController : NetworkBehaviour
 
     [SerializeField] private float CameraYOffset = 0.5f;
     private Camera _playerCamera;
+    private Animator _animator;
 
     public override void OnStartClient()
     {
@@ -34,6 +35,7 @@ public class PlayerCharacterController : NetworkBehaviour
     void Start()
     {
         _characterController = GetComponent<CharacterController>();
+        _animator = GetComponent<Animator>();
 
         //Cursor.lockState = CursorLockMode.Locked;
         //Cursor.visible = false;
@@ -47,6 +49,14 @@ public class PlayerCharacterController : NetworkBehaviour
         float curSpeedX = Speed * Input.GetAxis("Vertical");
         float curSpeedY = Speed * Input.GetAxis("Horizontal");
         _moveDirection = (forward * curSpeedX) + (right * curSpeedY);
+        if (_moveDirection == Vector3.zero)
+        {
+            _animator.SetBool("isWalking", false);
+        }
+        else
+        {
+            _animator.SetBool("isWalking", true);
+        }
 
         _characterController.Move(_moveDirection * Time.deltaTime);
 

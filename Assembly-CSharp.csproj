@@ -407,16 +407,16 @@
       <HintPath>D:\Unity\2022.3.15f1\Editor\Data\Managed\UnityEngine\UnityEditor.UnityConnectModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="FishNet.CodeAnalysis">
+      <HintPath>Assets\FishNet\Plugins\CodeAnalysis\FishNet.CodeAnalysis.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="ReportGeneratorMerged">
       <HintPath>Library\PackageCache\com.unity.testtools.codecoverage@1.2.4\lib\ReportGenerator\ReportGeneratorMerged.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
       <HintPath>Library\PackageCache\com.unity.visualscripting@1.9.1\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="FishNet.CodeAnalysis">
-      <HintPath>Assets\FishNet\Plugins\CodeAnalysis\FishNet.CodeAnalysis.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEditor.iOS.Extensions.Xcode">
@@ -945,9 +945,9 @@
       <Project>{4C33626C-458E-FF61-483A-DEAAB7165F57}</Project>
       <Name>Unity.EditorCoroutines.Editor</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.VisualScripting.SettingsProvider.Editor.csproj">
-      <Project>{F0D48FF4-2F66-EFCA-ACF9-59D7532A5679}</Project>
-      <Name>Unity.VisualScripting.SettingsProvider.Editor</Name>
+    <ProjectReference Include="GameKit.Dependencies.csproj">
+      <Project>{E92592E9-6FD1-27AB-C5B1-B55F15154137}</Project>
+      <Name>GameKit.Dependencies</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Performance.Profile-Analyzer.Editor.csproj">
       <Project>{A88E067E-448F-12F0-3BF7-5C411F257844}</Project>
@@ -965,9 +965,9 @@
       <Project>{C3293357-D971-DE6E-97AE-FFEC70CD4FDF}</Project>
       <Name>Unity.PlasticSCM.Editor</Name>
     </ProjectReference>
-    <ProjectReference Include="GameKit.Dependencies.csproj">
-      <Project>{E92592E9-6FD1-27AB-C5B1-B55F15154137}</Project>
-      <Name>GameKit.Dependencies</Name>
+    <ProjectReference Include="Unity.VisualScripting.SettingsProvider.Editor.csproj">
+      <Project>{F0D48FF4-2F66-EFCA-ACF9-59D7532A5679}</Project>
+      <Name>Unity.VisualScripting.SettingsProvider.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.VisualScripting.State.Editor.csproj">
       <Project>{86744A85-586F-63F4-99BC-5924DA7C6F47}</Project>
@@ -989,6 +989,10 @@
       <Project>{14A62DE8-F6E3-9F7B-C046-B3C28588BB6F}</Project>
       <Name>Unity.VisualStudio.Editor</Name>
     </ProjectReference>
+    <ProjectReference Include="FishNet.Codegen.Cecil.csproj">
+      <Project>{CF7A35E1-2826-51A0-D653-B6E0AB2F69E5}</Project>
+      <Name>FishNet.Codegen.Cecil</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.TextMeshPro.csproj">
       <Project>{15822F98-1438-17EB-A3C6-BE4E468F31BC}</Project>
       <Name>Unity.TextMeshPro</Name>
@@ -996,10 +1000,6 @@
     <ProjectReference Include="Unity.VisualScripting.Core.csproj">
       <Project>{07D9D699-FBDA-AD96-2B1E-9A73D80D98A5}</Project>
       <Name>Unity.VisualScripting.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.TextMeshPro.Editor.csproj">
-      <Project>{B76D8BBB-4D36-2232-05EE-2924CA49C25F}</Project>
-      <Name>Unity.TextMeshPro.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="UnityEditor.UI.csproj">
       <Project>{15A8121E-99BD-FD9B-2B02-384EA4C55B51}</Project>
@@ -1013,6 +1013,10 @@
       <Project>{841B55E9-3B4C-DD3F-25CC-76902453BA30}</Project>
       <Name>Unity.Rider.Editor</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.TextMeshPro.Editor.csproj">
+      <Project>{B76D8BBB-4D36-2232-05EE-2924CA49C25F}</Project>
+      <Name>Unity.TextMeshPro.Editor</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.VisualScripting.State.csproj">
       <Project>{9B4C91B8-8A1D-D592-9D44-39A21D721DD6}</Project>
       <Name>Unity.VisualScripting.State</Name>
@@ -1020,10 +1024,6 @@
     <ProjectReference Include="Unity.VSCode.Editor.csproj">
       <Project>{F739F981-074B-B78A-61A1-C63C8C595509}</Project>
       <Name>Unity.VSCode.Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="FishNet.Codegen.Cecil.csproj">
-      <Project>{CF7A35E1-2826-51A0-D653-B6E0AB2F69E5}</Project>
-      <Name>FishNet.Codegen.Cecil</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.VisualScripting.Flow.csproj">
       <Project>{2CE463EA-39C8-1E78-344F-7551C757B590}</Project>
