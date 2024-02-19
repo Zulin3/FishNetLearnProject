@@ -227,8 +227,8 @@ GameObject:
   - component: {fileID: 8014738771194036768}
   - component: {fileID: 1133514778714891865}
   m_Layer: 0
-  m_Name: Player
-  m_TagString: Untagged
+  m_Name: SimplePlayer
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -327,7 +327,7 @@ MonoBehaviour:
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 584410112
   <SceneId>k__BackingField: 0
-  <AssetPathHash>k__BackingField: 7807759643866311769
+  <AssetPathHash>k__BackingField: 4043639693824900985
 --- !u!114 &1133514778714891865
 MonoBehaviour:
   m_ObjectHideFlags: 0

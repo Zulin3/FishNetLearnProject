@@ -1003,8 +1003,8 @@ GameObject:
   - component: {fileID: 8130964530528726048}
   - component: {fileID: 4312843721806551938}
   m_Layer: 0
-  m_Name: GreenDragon
-  m_TagString: Untagged
+  m_Name: PlayerDragon
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1125,7 +1125,7 @@ MonoBehaviour:
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 584410112
   <SceneId>k__BackingField: 0
-  <AssetPathHash>k__BackingField: 11164932367135939127
+  <AssetPathHash>k__BackingField: 358205415248396991
 --- !u!114 &8130964530528726048
 MonoBehaviour:
   m_ObjectHideFlags: 0

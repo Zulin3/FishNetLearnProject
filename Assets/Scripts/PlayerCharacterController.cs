@@ -20,6 +20,7 @@ public class PlayerCharacterController : NetworkBehaviour
     public override void OnStartClient()
     {
         base.OnStartClient();
+
         if (base.IsOwner)
         {
             _playerCamera = Camera.main;
@@ -36,6 +37,14 @@ public class PlayerCharacterController : NetworkBehaviour
     {
         _characterController = GetComponent<CharacterController>();
         _animator = GetComponent<Animator>();
+
+        var networked = GetComponent<NetworkObject>().IsNetworked;
+        if (!networked)
+        {
+            _playerCamera = Camera.main;
+            _playerCamera.transform.position = new Vector3(transform.position.x, transform.position.y + CameraYOffset, transform.position.z);
+            _playerCamera.transform.parent = transform;
+        }
 
         //Cursor.lockState = CursorLockMode.Locked;
         //Cursor.visible = false;
