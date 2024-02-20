@@ -1,4 +1,5 @@
 using FishNet.Managing;
+using FishNetLearnProject;
 using UnityEngine;
 
 public class PortalScript : MonoBehaviour
@@ -16,9 +17,8 @@ public class PortalScript : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag(Constants.PlayerTag))
         {
-            Debug.Log("Player collided");
             _networkManager.ClientManager.StartConnection();
         }
     }

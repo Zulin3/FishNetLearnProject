@@ -1,78 +1,70 @@
 using FishNet.Object;
 using UnityEngine;
 
-
-
-public class PlayerCharacterController : NetworkBehaviour
+namespace FishNetLearnProject
 {
-    [SerializeField] private float Speed = 5.0f;
-    [SerializeField] private float LookSpeed = 2.0f;
-    [SerializeField] private float LookXLimit = 45.0f;
 
-    private CharacterController _characterController;
-    private Vector3 _moveDirection;
-    private float _rotationX = 0;
-
-    [SerializeField] private float CameraYOffset = 0.5f;
-    private Camera _playerCamera;
-    private Animator _animator;
-
-    public override void OnStartClient()
+    public class PlayerCharacterController : NetworkBehaviour, IMove
     {
-        base.OnStartClient();
+        [Header("Data")]
+        public PlayerData data;
 
-        if (base.IsOwner)
-        {
-            _playerCamera = Camera.main;
-            _playerCamera.transform.position = new Vector3(transform.position.x, transform.position.y + CameraYOffset, transform.position.z);
-            _playerCamera.transform.parent = transform;
-        }
-        else
-        {
-            enabled = false;
-        }
-    }
+        private CharacterController _characterController;
+        private CharacterAnimationController _characterAnimationController;
+        private IPlayerControls _playerControls;
+        private IMove _moveImplementation;
+        private CameraController _camera;
 
-    void Start()
-    {
-        _characterController = GetComponent<CharacterController>();
-        _animator = GetComponent<Animator>();
-
-        var networked = GetComponent<NetworkObject>().IsNetworked;
-        if (!networked)
+        public override void OnStartClient()
         {
-            _playerCamera = Camera.main;
-            _playerCamera.transform.position = new Vector3(transform.position.x, transform.position.y + CameraYOffset, transform.position.z);
-            _playerCamera.transform.parent = transform;
+            base.OnStartClient();
+
+            if (base.IsOwner)
+            {
+                InitPlayerCamera();
+            }
+            else
+            {
+                enabled = false;
+            }
         }
 
-        //Cursor.lockState = CursorLockMode.Locked;
-        //Cursor.visible = false;
-    }
-
-    void Update()
-    {
-        Vector3 forward = transform.TransformDirection(Vector3.forward);
-        Vector3 right = transform.TransformDirection(Vector3.right);
-
-        float curSpeedX = Speed * Input.GetAxis("Vertical");
-        float curSpeedY = Speed * Input.GetAxis("Horizontal");
-        _moveDirection = (forward * curSpeedX) + (right * curSpeedY);
-        if (_moveDirection == Vector3.zero)
+        private void InitPlayerCamera()
         {
-            _animator.SetBool("isWalking", false);
-        }
-        else
-        {
-            _animator.SetBool("isWalking", true);
+            _camera = Camera.main.GetComponent<CameraController>();
+            _camera.MoveIntoParent(transform, new Vector3(0f, data.CameraYOffset, 0f));
+            _camera.InitCamera(data.LookXLimit);
         }
 
-        _characterController.Move(_moveDirection * Time.deltaTime);
+        void Start()
+        {
+            _characterController = GetComponent<CharacterController>();
+            _characterAnimationController = new CharacterAnimationController(GetComponent<Animator>());
+            _moveImplementation = new SimpleCharacterMove(_characterController, _characterAnimationController);
+            _playerControls = new PlayerPCControls(transform, data.Speed, data.LookSpeed);
 
-        _rotationX -= Input.GetAxis("Mouse Y") * LookSpeed;
-        _rotationX = Mathf.Clamp(_rotationX, -LookXLimit, LookXLimit);
-        _playerCamera.transform.localRotation = Quaternion.Euler(_rotationX, 0, 0);
-        transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * LookSpeed, 0);
+            var networked = GetComponent<NetworkObject>().IsNetworked;
+            if (!networked)
+            {
+                InitPlayerCamera();
+            }
+        }
 
+        void Update()
+        {
+            Move(_playerControls.GetMoveDirection());
+            Rotate(_playerControls.GetRotation());
+            _camera.RotateVertical(_playerControls.GetCameraRotationAngle());
+        }
+
+        public void Move(Vector3 direction)
+        {
+            _moveImplementation.Move(direction);
+        }
+
+        public void Rotate(Quaternion rotation)
+        {
+            _moveImplementation.Rotate(rotation);
+        }
     }
 }
