@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d27b235b6bdd8b41ae8ba6bc10808f2, type: 3}
   m_Name: Data_Players
   m_EditorClassIdentifier: 
-  Speed: 5
-  LookSpeed: 2
+  Speed: 1
+  RunSpeed: 3
+  WaitTime: 10
+  LookSpeed: 1
   LookXLimit: 45
-  CameraYOffset: 5
+  CameraYOffset: 2
+  CameraZOffset: -2

@@ -15,6 +15,8 @@ namespace FishNetLearnProject
 
         #region AnimationsParams
         public const string CharacterIsWalking = "isWalking";
+        public const string CharacterIsRunning = "isRunning";
+        public const string CharacterWaitTrigger = "Wait";
         #endregion
     }
 }

@@ -32,7 +32,7 @@ namespace FishNetLearnProject
         private void InitPlayerCamera()
         {
             _camera = Camera.main.GetComponent<CameraController>();
-            _camera.MoveIntoParent(transform, new Vector3(0f, data.CameraYOffset, 0f));
+            _camera.MoveIntoParent(transform, new Vector3(0f, data.CameraYOffset, data.CameraZOffset));
             _camera.InitCamera(data.LookXLimit);
         }
 
@@ -40,8 +40,8 @@ namespace FishNetLearnProject
         {
             _characterController = GetComponent<CharacterController>();
             _characterAnimationController = new CharacterAnimationController(GetComponent<Animator>());
-            _moveImplementation = new SimpleCharacterMove(_characterController, _characterAnimationController);
-            _playerControls = new PlayerPCControls(transform, data.Speed, data.LookSpeed);
+            _moveImplementation = new SimpleCharacterMove(_characterController, _characterAnimationController, data);
+            _playerControls = new PlayerPCControls(transform);
 
             var networked = GetComponent<NetworkObject>().IsNetworked;
             if (!networked)
@@ -52,14 +52,14 @@ namespace FishNetLearnProject
 
         void Update()
         {
-            Move(_playerControls.GetMoveDirection());
+            Move(_playerControls.GetMoveDirection(), _playerControls.GetIsRunning());
             Rotate(_playerControls.GetRotation());
             _camera.RotateVertical(_playerControls.GetCameraRotationAngle());
         }
 
-        public void Move(Vector3 direction)
+        public void Move(Vector3 direction, bool isRunning)
         {
-            _moveImplementation.Move(direction);
+            _moveImplementation.Move(direction, isRunning);
         }
 
         public void Rotate(Quaternion rotation)

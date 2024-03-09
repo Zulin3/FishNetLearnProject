@@ -7,10 +7,13 @@ namespace FishNetLearnProject
     {
         [Header("Player stats")]
         public float Speed;
+        public float RunSpeed;
+        public float WaitTime;
         public float LookSpeed;
 
         [Header("Camera stats")]
         public float LookXLimit;
         public float CameraYOffset;
+        public float CameraZOffset;
     }
 }

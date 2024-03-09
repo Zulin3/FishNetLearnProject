@@ -1088,10 +1088,7 @@ MonoBehaviour:
   _componentIndexCache: 0
   _addedNetworkObject: {fileID: 1017240501597193241}
   _networkObjectCache: {fileID: 1017240501597193241}
-  Speed: 5
-  LookSpeed: 2
-  LookXLimit: 45
-  CameraYOffset: 5
+  data: {fileID: 0}
 --- !u!114 &1017240501597193241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1125,7 +1122,7 @@ MonoBehaviour:
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 584410112
   <SceneId>k__BackingField: 0
-  <AssetPathHash>k__BackingField: 358205415248396991
+  <AssetPathHash>k__BackingField: 7807759643866311769
 --- !u!114 &8130964530528726048
 MonoBehaviour:
   m_ObjectHideFlags: 0

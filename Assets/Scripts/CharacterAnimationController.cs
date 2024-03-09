@@ -7,12 +7,6 @@ namespace FishNetLearnProject
     {
         private Animator _animator;
 
-        private enum AnimationState
-        {
-            Idle,
-            Walking
-        }
-
         public CharacterAnimationController(Animator animator)
         {
             _animator = animator;
@@ -21,11 +15,24 @@ namespace FishNetLearnProject
         public void WalkAnimation()
         {
             _animator.SetBool(Constants.CharacterIsWalking, true);
+            _animator.SetBool(Constants.CharacterIsRunning, false);
         }
 
         public void IdleAnimation()
         {
             _animator.SetBool(Constants.CharacterIsWalking, false);
+            _animator.SetBool(Constants.CharacterIsRunning, false);
+        }
+
+        public void RunningAnimation()
+        {
+            _animator.SetBool(Constants.CharacterIsRunning, true);
+            _animator.SetBool(Constants.CharacterIsWalking, true);
+        }
+
+        public void WaitingAnimation()
+        {
+            _animator.SetTrigger(Constants.CharacterWaitTrigger);
         }
     }
 }
