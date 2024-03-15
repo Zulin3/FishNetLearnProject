@@ -23,9 +23,7 @@ using UnityEngine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
 #if UNITY_2018_4_OR_NEWER
-using UnityEngine.Networking;
 #endif
 #if UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX
 using System.IO;
@@ -84,7 +82,7 @@ public class WebViewObject : MonoBehaviour
     IntPtr webView;
 #elif UNITY_ANDROID
     AndroidJavaObject webView;
-    
+
     bool mVisibility;
     int mKeyboardVisibleHeight;
     float mResumedTimestamp;
@@ -93,7 +91,7 @@ public class WebViewObject : MonoBehaviour
     float androidNetworkReachabilityCheckT0 = -1.0f;
     NetworkReachability? androidNetworkReachability0 = null;
 #endif
-    
+
     void OnApplicationPause(bool paused)
     {
         this.paused = paused;
@@ -156,7 +154,8 @@ public class WebViewObject : MonoBehaviour
             mLastScreenHeight = Screen.height;
             webView.Call("EvaluateJS", "(function() {var e = document.activeElement; if (e != null && e.tagName.toLowerCase() != 'body') {e.blur(); e.focus();}})()");
         }
-        for (;;) {
+        for (; ; )
+        {
             if (webView == null)
                 break;
             var s = webView.Call<String>("GetMessage");
@@ -165,34 +164,35 @@ public class WebViewObject : MonoBehaviour
             var i = s.IndexOf(':', 0);
             if (i == -1)
                 continue;
-            switch (s.Substring(0, i)) {
-            case "CallFromJS":
-                CallFromJS(s.Substring(i + 1));
-                break;
-            case "CallOnError":
-                CallOnError(s.Substring(i + 1));
-                break;
-            case "CallOnHttpError":
-                CallOnHttpError(s.Substring(i + 1));
-                break;
-            case "CallOnLoaded":
-                CallOnLoaded(s.Substring(i + 1));
-                break;
-            case "CallOnStarted":
-                CallOnStarted(s.Substring(i + 1));
-                break;
-            case "CallOnHooked":
-                CallOnHooked(s.Substring(i + 1));
-                break;
-            case "CallOnCookies":
-                CallOnCookies(s.Substring(i + 1));
-                break;
-            case "SetKeyboardVisible":
-                SetKeyboardVisible(s.Substring(i + 1));
-                break;
-            case "RequestFileChooserPermissions":
-                RequestFileChooserPermissions();
-                break;
+            switch (s.Substring(0, i))
+            {
+                case "CallFromJS":
+                    CallFromJS(s.Substring(i + 1));
+                    break;
+                case "CallOnError":
+                    CallOnError(s.Substring(i + 1));
+                    break;
+                case "CallOnHttpError":
+                    CallOnHttpError(s.Substring(i + 1));
+                    break;
+                case "CallOnLoaded":
+                    CallOnLoaded(s.Substring(i + 1));
+                    break;
+                case "CallOnStarted":
+                    CallOnStarted(s.Substring(i + 1));
+                    break;
+                case "CallOnHooked":
+                    CallOnHooked(s.Substring(i + 1));
+                    break;
+                case "CallOnCookies":
+                    CallOnCookies(s.Substring(i + 1));
+                    break;
+                case "SetKeyboardVisible":
+                    SetKeyboardVisible(s.Substring(i + 1));
+                    break;
+                case "RequestFileChooserPermissions":
+                    RequestFileChooserPermissions();
+                    break;
             }
         }
     }
@@ -212,7 +212,7 @@ public class WebViewObject : MonoBehaviour
             SetMargins(mMarginLeft, mMarginTop, mMarginRight, mMarginBottom, mMarginRelative);
         }
     }
-    
+
     /// Called from Java native plugin to request permissions for the file chooser.
     public void RequestFileChooserPermissions()
     {
@@ -613,9 +613,9 @@ public class WebViewObject : MonoBehaviour
         int radius = 0,
         // android
         int androidForceDarkMode = 0,  // 0: follow system setting, 1: force dark off, 2: force dark on
-        // ios
+                                       // ios
         bool enableWKWebView = true,
-        int  wkContentMode = 0,  // 0: recommended, 1: mobile, 2: desktop
+        int wkContentMode = 0,  // 0: recommended, 1: mobile, 2: desktop
         bool wkAllowsLinkPreview = true,
         bool wkAllowsBackForwardNavigationGestures = true,
         // editor

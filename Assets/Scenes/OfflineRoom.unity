@@ -408,9 +408,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Url: https://curious.co/
   LeftMargin: 10
-  TopMargin: 55
+  TopMargin: 10
   RightMargin: 10
-  BottomMargin: 115
+  BottomMargin: 10
   WebWindow: {fileID: 733518825}
 --- !u!1 &337986275 stripped
 GameObject:

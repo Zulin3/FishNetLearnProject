@@ -1134,6 +1134,10 @@
       <Project>{F0D48FF4-2F66-EFCA-ACF9-59D7532A5679}</Project>
       <Name>Unity.VisualScripting.SettingsProvider.Editor</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.Mobile.AndroidLogcat.Editor.csproj">
+      <Project>{22021A32-B465-399E-B665-99FB035EB072}</Project>
+      <Name>Unity.Mobile.AndroidLogcat.Editor</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.VisualScripting.State.Editor.csproj">
       <Project>{86744A85-586F-63F4-99BC-5924DA7C6F47}</Project>
       <Name>Unity.VisualScripting.State.Editor</Name>

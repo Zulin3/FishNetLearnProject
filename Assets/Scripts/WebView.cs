@@ -28,7 +28,7 @@ public class WebView : MonoBehaviour
     [SerializeField] private int LeftMargin = 10;
     [SerializeField] private int TopMargin = 10;
     [SerializeField] private int RightMargin = 10;
-    [SerializeField] private int BottomMargin = 160;
+    [SerializeField] private int BottomMargin = 10;
     [SerializeField] private RectTransform WebWindow;
 
     WebViewObject webViewObject;
@@ -37,7 +37,13 @@ public class WebView : MonoBehaviour
     {
         webViewObject.SetVisibility(true);
         WebWindow.gameObject.SetActive(true);
-        webViewObject.SetMargins(LeftMargin, TopMargin, RightMargin, BottomMargin);
+        Vector3[] cornersPosition = new Vector3[4];
+        WebWindow.GetWorldCorners(cornersPosition);
+        float left = cornersPosition[0].x;
+        float top = cornersPosition[1].y;
+        float right = cornersPosition[2].x;
+        float bottom = cornersPosition[0].y;
+        webViewObject.SetMargins((int)left + LeftMargin, Screen.height - (int)top + TopMargin, Screen.width - (int)right + RightMargin, (int)bottom + BottomMargin);
     }
 
     public void HideWebView()
@@ -161,7 +167,13 @@ public class WebView : MonoBehaviour
 
         //webViewObject.SetScrollbarsVisibility(true);
 
-        webViewObject.SetMargins(LeftMargin, TopMargin, RightMargin, BottomMargin);
+        //webViewObject.SetMargins(LeftMargin, TopMargin, Screen.width - (LeftMargin + RightMargin), Screen.height - (TopMargin + BottomMargin));
+        Debug.Log("Dimensions!");
+        Debug.Log(LeftMargin);
+        Debug.Log(TopMargin);
+        Debug.Log(Screen.width - (LeftMargin + RightMargin));
+        Debug.Log(Screen.height - (TopMargin + BottomMargin));
+        webViewObject.SetMargins(0, 0, 0, 0);
         webViewObject.SetTextZoom(100);  // android only. cf. https://stackoverflow.com/questions/21647641/android-webview-set-font-size-system-default/47017410#47017410
         webViewObject.SetVisibility(false);
 
