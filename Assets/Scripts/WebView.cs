@@ -35,7 +35,7 @@ public class WebView : MonoBehaviour
 
     public void ShowWebView()
     {
-        webViewObject.SetVisibility(true);
+        webViewObject.SetVisibility(false);
         WebWindow.gameObject.SetActive(true);
         Vector3[] cornersPosition = new Vector3[4];
         WebWindow.GetWorldCorners(cornersPosition);
@@ -44,6 +44,11 @@ public class WebView : MonoBehaviour
         float right = cornersPosition[2].x;
         float bottom = cornersPosition[0].y;
         webViewObject.SetMargins((int)left + LeftMargin, Screen.height - (int)top + TopMargin, Screen.width - (int)right + RightMargin, (int)bottom + BottomMargin);
+    }
+
+    public void LoadPageHandler()
+    {
+        webViewObject.SetVisibility(true);
     }
 
     public void HideWebView()
@@ -88,6 +93,7 @@ public class WebView : MonoBehaviour
             },
             ld: (msg) =>
             {
+                LoadPageHandler();
                 Debug.Log(string.Format("CallOnLoaded[{0}]", msg));
 #if UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX || UNITY_IOS
                 // NOTE: the following js definition is required only for UIWebView; if
