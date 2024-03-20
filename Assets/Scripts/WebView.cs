@@ -59,9 +59,34 @@ public class WebView : MonoBehaviour
 
     public void LoadWebsiteUrl(string url)
     {
-        webViewObject.LoadURL(url);
+        if (url.StartsWith("http"))
+        {
+            webViewObject.LoadURL(url.Replace(" ", "%20"));
+            ShowWebView();
+        }
+        else
+        {
+            StartCoroutine(LoadLocalWebpage(url));
+        }
+    }
+
+    IEnumerator LoadLocalWebpage(string url)
+    {
+        Debug.Log("Loading local webpage");
+        var src = System.IO.Path.Combine(Application.streamingAssetsPath, url);
+        var dst = System.IO.Path.Combine(Application.temporaryCachePath, url);
+
+        var unityWebRequest = UnityWebRequest.Get(src);
+        yield return unityWebRequest.SendWebRequest();
+        byte[] result = null;
+        result = unityWebRequest.downloadHandler.data;
+        System.IO.File.WriteAllBytes(dst, result);
+
+        webViewObject.LoadURL("file://" + dst.Replace(" ", "%20"));
+        Debug.Log("Finished loading local webpage");
         ShowWebView();
     }
+
 
     IEnumerator Start()
     {
